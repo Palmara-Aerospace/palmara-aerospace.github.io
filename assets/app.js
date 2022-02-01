@@ -26,10 +26,10 @@
    * Header typing effect
    */
   // define constants
-  var delay = 100;
+  var delay = 150;
   var element = document.querySelector("span#change-title-text");
   // wait to trigger animation
-  window.setTimeout(clear_initial_text, 1000);
+  window.setTimeout(clear_initial_text, 1500);
   // clear the initial text
   function clear_initial_text() {
     var text = element.textContent;
