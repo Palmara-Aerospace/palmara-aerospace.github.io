@@ -31,8 +31,8 @@ a.link:hover {
 .bg-gradient-primary-to-secondary {
   background: linear-gradient(45deg, #2937f0, #9f1ae2) !important;
 }
-svg.bi {
-  fill: url(#bi-svg-gradient);
+#enabling-technologies svg[data-icon] {
+  fill: url(#svg-gradient);
 }
 .text-gradient {
   background: -webkit-linear-gradient(#2937f0, #9f1ae2);
@@ -116,9 +116,6 @@ aside, section {
   left: 0%;
   width: 100%;
   height: 100%;
-}
-.icon-feature {
-  font-size: 4rem;
 }
 .features-device-mockup {
   display: flex;
