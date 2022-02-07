@@ -14,7 +14,7 @@
    * Navbar
    */
   // collapse navbar on nav click
-  var nav_links = document.querySelectorAll(".nav-link, .nav-link-custom");
+  var nav_links = document.querySelectorAll(".nav-link, .nav-link-custom, .navbar-brand");
   var toggle_nav = function() {
     document.querySelector("#mobile-menu").classList.remove("show");
   };
