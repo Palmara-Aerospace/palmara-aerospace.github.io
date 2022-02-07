@@ -49,7 +49,7 @@ aside, section {
   padding-bottom: 1rem;
   background-color: #fff;
 }
-#mainNav .navbar-brand:hover, #mainNav .navbar-brand:active {
+#mainNav .navbar-brand:hover {
   color: #2937f0;
 }
 #mainNav .navbar-toggler {
