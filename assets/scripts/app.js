@@ -1,72 +1,56 @@
-(function() {
-  /*
-   * Scroll spy
-   */
-  // activate bootstrap scrollspy on the main nav element
-  var main_nav = document.querySelector("#mainNav");
-  if (main_nav) {
-    new bootstrap.ScrollSpy(document.body, {
-      target: "#mainNav",
-      offset: 74
-    });
-  }
-  /*
-   * Navbar
-   */
-  // collapse navbar on nav click
-  var nav_links = document.querySelectorAll(".nav-link, .nav-link-custom, .navbar-brand");
-  var toggle_nav = function() {
-    document.querySelector("#mobile-menu").classList.remove("show");
-  };
-  for (var i = 0; i < nav_links.length; i++) {
-    var nav_link = nav_links[i];
-    nav_link.onclick = toggle_nav;
-  }
-  /*
-   * Header typing effect
-   */
-  // define constants
-  var delay = 150;
-  var element = document.querySelector("span#change-title-text");
-  // wait to trigger animation
-  window.setTimeout(clear_initial_text, 1500);
-  // clear the initial text
-  function clear_initial_text() {
+function $(selector) {
+    var elements = document.querySelectorAll(selector);
+    if (!elements || elements.length < 1) {
+        return [];
+    }
+    var result = [];
+    for (var index = 0; index < elements.length; index++) {
+        var element = elements[index];
+        result.push(element);
+    }
+    return result;
+}
+if ($("#mainNav")[0]) {
+    new bootstrap.ScrollSpy($("body")[0], { target: "#mainNav", offset: 74 });
+}
+var toggle_nav = function () {
+    $("#mobile-menu")[0].classList.remove("show");
+};
+for (var _i = 0, _a = $(".nav-link, .nav-link-custom, .navbar-brand"); _i < _a.length; _i++) {
+    var nav_link = _a[_i];
+    nav_link.addEventListener("click", toggle_nav, false);
+}
+window.setTimeout(function () {
+    var delay = 150;
+    var element = $("span#change-title-text")[0];
+    function write_new_text() {
+        var text = "Industry";
+        var current = "";
+        element.textContent = "";
+        var interval_write_new_text = window.setInterval(function () {
+            if (current.length >= (text.length - 1)) {
+                window.clearInterval(interval_write_new_text);
+                element.textContent = text;
+                return undefined;
+            }
+            current += text[current.length];
+            element.textContent = current + "|";
+        }, delay);
+    }
     var text = element.textContent;
-    var interval = window.setInterval(function() {
-      if (text.length === 0) {
-        window.clearInterval(interval);
-        write_new_text();
-        return false;
-      }
-      text = text.slice(0, -1);
-      element.textContent = ((text.length === 0) ? "" : text) + "|";
+    var interval_clear_new_text = window.setInterval(function () {
+        if (text.length === 0) {
+            window.clearInterval(interval_clear_new_text);
+            write_new_text();
+            return undefined;
+        }
+        text = text.slice(0, -1);
+        element.textContent = ((text.length === 0) ? "" : text) + "|";
     }, delay);
-  }
-  // write the new text
-  function write_new_text() {
-    var text = "Industry";
-    var current = "";
-    element.textContent = "";
-    var interval_2 = window.setInterval(function() {
-      if (current.length >= (text.length - 1)) {
-        window.clearInterval(interval_2);
-        element.textContent = text;
-        return false;
-      } else {
-        current += text[current.length];
-        element.textContent = current + "|";
-      }
-    }, delay);
-  }
-  /*
-   * Insert background images
-   */
-  var backgrounds = document.querySelectorAll("[data-background]");
-  for (var j = 0; j < backgrounds.length; j++) {
-    var background = backgrounds[j];
+}, 1500);
+for (var _b = 0, _c = $("[data-background]"); _b < _c.length; _b++) {
+    var background = _c[_b];
     var url = background.getAttribute("data-background");
-    background.style["background-image"] = "url(" + url + ")";
+    background.style.backgroundImage = "url(" + url + ")";
     background.classList.add("background");
-  }
-})();
+}
